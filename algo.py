@@ -42,7 +42,7 @@ def initialize(context):
     context.MyFireSalePrice = context.MyLeastPrice
     context.MyFireSaleAge = 6
     
-    logger.info("Init")
+    log.info("Init")
 
     # over simplistic tracking of position age
     context.age = {}
@@ -207,7 +207,7 @@ def my_rebalance(context, data):
 
     cancel_open_buy_orders(context, data)
     
-    logger.info("My Rebalance")
+    log.info("My Rebalance")
 
     # Order sell at profit target in hope that somebody actually buys it
     for stock in context.portfolio.positions:
