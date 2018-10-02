@@ -35,8 +35,8 @@ def record(*args, **kwargs):
 
 def initialize(context):
 
-    context.MaxCandidates = 40
-    context.MaxBuyOrdersAtOnce = 30
+    context.MaxCandidates = 5
+    context.MaxBuyOrdersAtOnce = 5
     context.MyLeastPrice = 3.00
     context.MyMostPrice = 25.00
     context.MyFireSalePrice = context.MyLeastPrice
@@ -134,7 +134,7 @@ Algorithm initialized variables:
     # Short close price average.
     ShortAvg = SimpleMovingAverage(
         inputs=[USEquityPricing.close],
-        window_length=3,
+        window_length=10,
         mask=base_universe
     )
 
@@ -145,7 +145,7 @@ Algorithm initialized variables:
         mask=base_universe
     )
 
-    percent_difference = ShortAvg - LongAvg
+    percent_difference = (ShortAvg - LongAvg) / LongAvg
 
     # Filter to select securities to long.
     stocks_worst = percent_difference.bottom(context.MaxCandidates)
