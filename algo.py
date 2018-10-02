@@ -209,7 +209,7 @@ def my_rebalance(context, data):
     
     log.info("My Rebalance: ",context.MyCandidate)
     stock_list = []  
-    for stock in data:
+    for stock in context.MyCandidate:
         stock_list.append(str(stock.symbol))
     log.info(stock_list)
 
