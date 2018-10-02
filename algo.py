@@ -208,6 +208,10 @@ def my_rebalance(context, data):
     cancel_open_buy_orders(context, data)
     
     log.info("My Rebalance: ",context.MyCandidate)
+    stock_list = []  
+    for stock in data:
+        stock_list.append(str(stock.symbol))
+    print stock_list  
 
     # Order sell at profit target in hope that somebody actually buys it
     for stock in context.portfolio.positions:
