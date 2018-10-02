@@ -47,7 +47,7 @@ def initialize(context):
     print(len(context.portfolio.positions))
 
     # Rebalance
-    EveryThisManyMinutes = 10
+    EveryThisManyMinutes = 2
     TradingDayHours = 6.5
     TradingDayMinutes = int(TradingDayHours * 60)
     for minutez in range(
@@ -252,15 +252,6 @@ def my_rebalance(context, data):
 
     WeightThisBuyOrder = float(1.00 / context.MaxBuyOrdersAtOnce)
     
-
-    log.info(
-        '''
-Algorithm initialized variables:
- context.MaxCandidates %s
- LowVar %s
- HighVar %s''' %
-        (context.MaxCandidates, LowVar, HighVar))
-
     
     
     
