@@ -150,8 +150,8 @@ Algorithm initialized variables:
     percent_difference = (ShortAvg - LongAvg) / LongAvg
 
     # Filter to select securities to long.
-#    stocks_worst = percent_difference.top(context.MaxCandidates)
-    stocks_worst = AverageDollarVolume(window_length=20).top(5)
+    stocks_worst = percent_difference.bottom(context.MaxCandidates)
+    #stocks_worst = AverageDollarVolume(window_length=20).top(5)
     securities_to_trade = (stocks_worst)
     
     
