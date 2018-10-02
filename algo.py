@@ -144,14 +144,7 @@ def make_pipeline(context):
     # Filter to select securities to long.
     stocks_worst = percent_difference.bottom(context.MaxCandidates)
     securities_to_trade = (stocks_worst)
-
-    return Pipeline(
-        columns={
-            'stocks_worst': stocks_worst
-        },
-        screen=(securities_to_trade),
-    )
-
+    
     log.info(
         '''
 Algorithm initialized variables:
@@ -159,6 +152,14 @@ Algorithm initialized variables:
  LowVar %s
  HighVar %s''' %
         (context.MaxCandidates, LowVar, HighVar))
+    
+
+    return Pipeline(
+        columns={
+            'stocks_worst': stocks_worst
+        },
+        screen=(securities_to_trade),
+    )
 
 
 def my_compute_weights(context):
