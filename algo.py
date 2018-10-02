@@ -49,7 +49,7 @@ def initialize(context):
     print(len(context.portfolio.positions))
 
     # Rebalance
-    EveryThisManyMinutes = 2
+    EveryThisManyMinutes = 1
     TradingDayHours = 6.5
     TradingDayMinutes = int(TradingDayHours * 60)
     for minutez in range(
@@ -207,7 +207,7 @@ def my_rebalance(context, data):
 
     cancel_open_buy_orders(context, data)
     
-    log.info("My Rebalance",context.MyCandidate)
+    log.info("My Rebalance: ",context.MyCandidate)
 
     # Order sell at profit target in hope that somebody actually buys it
     for stock in context.portfolio.positions:
