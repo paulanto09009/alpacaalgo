@@ -209,6 +209,7 @@ def my_rebalance(context, data):
     
     log.info("My Rebalance: ")
     log.info(next(context.MyCandidate))
+    log.info(next(context.MyCandidate))    
 
     # Order sell at profit target in hope that somebody actually buys it
     for stock in context.portfolio.positions:
