@@ -251,6 +251,14 @@ def my_rebalance(context, data):
                           )
 
     WeightThisBuyOrder = float(1.00 / context.MaxBuyOrdersAtOnce)
+    
+
+        log.info(
+ 
+        (context.MaxCandidates, LowVar, HighVar))
+    
+    
+    
     for ThisBuyOrder in range(context.MaxBuyOrdersAtOnce):
         stock = next(context.MyCandidate)
         PH = data.history([stock], 'price', 20, '1d')
