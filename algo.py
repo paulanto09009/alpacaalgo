@@ -117,13 +117,7 @@ def make_pipeline(context):
     LowVar = 6
     HighVar = 40
 
-    log.info(
-        '''
-Algorithm initialized variables:
- context.MaxCandidates %s
- LowVar %s
- HighVar %s''' %
-        (context.MaxCandidates, LowVar, HighVar))
+
 
     # High dollar volume filter.
     base_universe = AverageDollarVolume(
@@ -157,6 +151,14 @@ Algorithm initialized variables:
         },
         screen=(securities_to_trade),
     )
+
+    log.info(
+        '''
+Algorithm initialized variables:
+ context.MaxCandidates %s
+ LowVar %s
+ HighVar %s''' %
+        (context.MaxCandidates, LowVar, HighVar))
 
 
 def my_compute_weights(context):
