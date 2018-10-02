@@ -106,12 +106,12 @@ def make_pipeline(context):
 
     # Filter for stocks that pass all of our previous filters.
     tradeable_stocks = (
-        primary_share
-        & not_wi
-        & not_lp_name
-        & have_market_cap
-        & AtLeastPrice
-        & AtMostPrice
+      #  primary_share
+      #  & not_wi
+      #  & not_lp_name
+      #  & have_market_cap
+      #  & AtLeastPrice
+      #  & AtMostPrice
     )
 
     LowVar = 6
