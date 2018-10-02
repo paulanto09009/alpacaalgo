@@ -35,8 +35,8 @@ def record(*args, **kwargs):
 
 def initialize(context):
 
-    context.MaxCandidates = 5
-    context.MaxBuyOrdersAtOnce = 5
+    context.MaxCandidates = 100
+    context.MaxBuyOrdersAtOnce = 30
     context.MyLeastPrice = 3.00
     context.MyMostPrice = 25.00
     context.MyFireSalePrice = context.MyLeastPrice
@@ -106,11 +106,11 @@ def make_pipeline(context):
 
     # Filter for stocks that pass all of our previous filters.
     tradeable_stocks = (
-     #   primary_share
-     #   & not_wi
-     #   & not_lp_name
-     #   & have_market_cap
-        AtLeastPrice
+        primary_share
+        & not_wi
+        & not_lp_name
+        & have_market_cap
+        & AtLeastPrice
         & AtMostPrice
     )
 
@@ -134,7 +134,7 @@ Algorithm initialized variables:
     # Short close price average.
     ShortAvg = SimpleMovingAverage(
         inputs=[USEquityPricing.close],
-        window_length=10,
+        window_length=3,
         mask=base_universe
     )
 
