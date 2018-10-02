@@ -145,7 +145,7 @@ Algorithm initialized variables:
         mask=base_universe
     )
 
-    percent_difference = (ShortAvg - LongAvg) / LongAvg
+    percent_difference = ShortAvg - LongAvg
 
     # Filter to select securities to long.
     stocks_worst = percent_difference.bottom(context.MaxCandidates)
