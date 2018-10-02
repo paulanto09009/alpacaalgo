@@ -148,14 +148,13 @@ Algorithm initialized variables:
     percent_difference = (ShortAvg - LongAvg) / LongAvg
 
     # Filter to select securities to long.
-    stocks_worst = percent_difference(context.MaxCandidates)
+    stocks_worst = percent_difference.top(context.MaxCandidates)
     securities_to_trade = (stocks_worst)
     top5 = AverageDollarVolume(window_length=20).top(5)
     
-    return Pipeline({
-    'close': USEquityPricing.close.latest,
-    'marketcap': IEXKeyStats.marketcap.latest,
-}, screen=top5)
+    return Pipeline(columns={
+            'stocks_worst': stocks_worst
+        }, screen=(securities_to_trade))
 
 
 def my_compute_weights(context):
