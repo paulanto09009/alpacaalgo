@@ -253,9 +253,14 @@ def my_rebalance(context, data):
     WeightThisBuyOrder = float(1.00 / context.MaxBuyOrdersAtOnce)
     
 
-        log.info(
- 
+    log.info(
+        '''
+Algorithm initialized variables:
+ context.MaxCandidates %s
+ LowVar %s
+ HighVar %s''' %
         (context.MaxCandidates, LowVar, HighVar))
+
     
     
     
