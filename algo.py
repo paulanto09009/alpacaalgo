@@ -38,7 +38,7 @@ def initialize(context):
     context.MaxCandidates = 10
     context.MaxBuyOrdersAtOnce = 10
     context.MyLeastPrice = 10.00
-    context.MyMostPrice = 25.00
+    context.MyMostPrice = 15.00
     context.MyFireSalePrice = context.MyLeastPrice
     context.MyFireSaleAge = 6
     
