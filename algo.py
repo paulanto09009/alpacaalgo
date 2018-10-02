@@ -158,7 +158,7 @@ Algorithm initialized variables:
         columns={
             'stocks_worst': stocks_worst
         },
-        screen=(securities_to_trade),
+     #   screen=(securities_to_trade),
     )
 
 
