@@ -35,10 +35,10 @@ def record(*args, **kwargs):
 
 def initialize(context):
 
-    context.MaxCandidates = 100
-    context.MaxBuyOrdersAtOnce = 10
+    context.MaxCandidates = 50
+    context.MaxBuyOrdersAtOnce = 20
     context.MyLeastPrice = .10
-    context.MyMostPrice = 1
+    context.MyMostPrice = 3
     context.MyFireSalePrice = context.MyLeastPrice
     context.MyFireSaleAge = 2
     
