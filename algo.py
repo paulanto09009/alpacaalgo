@@ -35,7 +35,7 @@ def record(*args, **kwargs):
 
 def initialize(context):
 
-    context.MaxCandidates = 25
+    context.MaxCandidates = 100
     context.MaxBuyOrdersAtOnce = 25
     context.MyLeastPrice = .10
     context.MyMostPrice = 3
@@ -208,8 +208,6 @@ def my_rebalance(context, data):
     cancel_open_buy_orders(context, data)
     
     log.info("My Rebalance: ")
-    log.info(next(context.MyCandidate))
-    log.info(next(context.MyCandidate))    
 
     # Order sell at profit target in hope that somebody actually buys it
     for stock in context.portfolio.positions:
