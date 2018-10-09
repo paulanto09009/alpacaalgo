@@ -35,8 +35,8 @@ def record(*args, **kwargs):
 
 def initialize(context):
 
-    context.MaxCandidates = 20
-    context.MaxBuyOrdersAtOnce = 20
+    context.MaxCandidates = 40
+    context.MaxBuyOrdersAtOnce = 30
     context.MyLeastPrice = .10
     context.MyMostPrice = 5
     context.MyFireSalePrice = context.MyLeastPrice
@@ -117,7 +117,7 @@ def make_pipeline(context):
     )
 
     LowVar = 6
-    HighVar = 40
+    HighVar = 20
 
     log.info(
         '''
