@@ -40,7 +40,7 @@ def initialize(context):
     context.MyLeastPrice = .10
     context.MyMostPrice = 5
     context.MyFireSalePrice = context.MyLeastPrice
-    context.MyFireSaleAge = 1
+    context.MyFireSaleAge = 5
     
     log.info("Init")
 
