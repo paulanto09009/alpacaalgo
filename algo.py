@@ -210,11 +210,8 @@ def my_rebalance(context, data):
     log.info("My Rebalance: ")
 
     # Order sell at profit target in hope that somebody actually buys it
-    for stock in context.portfolio.positions:        
-        print(stock)      
-        print(context.portfolio.positions[stock].amount)
-        print(get_open_orders(stock))            
-        if not get_open_orders(stock):
+    for stock in context.portfolio.positions:                  
+        if len(get_open_orders(stock)) == 0:
             StockShares = context.portfolio.positions[stock].amount
             CurrPrice = float(data.current([stock], 'price'))
             CostBasis = float(context.portfolio.positions[stock].cost_basis)
@@ -223,7 +220,9 @@ def my_rebalance(context, data):
                     CostBasis *
                     SellFactor,
                     buy=False))            
-
+            print(stock)      
+            print(context.portfolio.positions[stock].amount)        
+            
             if np.isnan(SellPrice):
                 pass  # probably best to wait until nan goes away
             elif (stock in context.age and context.age[stock] < 1):
