@@ -35,8 +35,8 @@ def record(*args, **kwargs):
 
 def initialize(context):
 
-    context.MaxCandidates = 10
-    context.MaxBuyOrdersAtOnce = 10
+    context.MaxCandidates = 100
+    context.MaxBuyOrdersAtOnce = 40
     context.MyLeastPrice = .10
     context.MyMostPrice = 5
     context.MyFireSalePrice = context.MyLeastPrice
@@ -205,7 +205,7 @@ def my_rebalance(context, data):
     SellFactor = 1.01
     cash = context.portfolio.cash
 
-    cancel_open_buy_orders(context, data)
+    cancel_open_orders(context, data)
     
     log.info("My Rebalance: ")
 
