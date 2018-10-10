@@ -221,7 +221,7 @@ def my_rebalance(context, data):
                     buy=False))            
             print(stock)      
             print(SellPrice)        
-            order_target(stock, 0, style=LimitOrder(SellPrice))  
+            order_target(stock, StockShares, style=LimitOrder(SellPrice))  
             
             
             if np.isnan(SellPrice):
