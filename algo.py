@@ -242,7 +242,7 @@ def my_rebalance(context, data):
                 else:
                     SellPrice = float(
                         make_div_by_05(.95 * CurrPrice, buy=False))
-                    order(stock, 0,
+                    order(stock, -StockShares,
                           style=LimitOrder(SellPrice)
                           )
             else:
@@ -252,7 +252,7 @@ def my_rebalance(context, data):
                     context.age[stock] = 1
                 else:
 
-                    order(stock, 0,
+                    order(stock, -StockShares,
                           style=LimitOrder(SellPrice)
                           )
 
