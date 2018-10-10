@@ -211,7 +211,7 @@ def my_rebalance(context, data):
 
     # Order sell at profit target in hope that somebody actually buys it
     for stock in context.portfolio.positions:
-        
+        log.info("Sell orders holder 1 ")        
         if not get_open_orders(stock):
             StockShares = context.portfolio.positions[stock].amount
             CurrPrice = float(data.current([stock], 'price'))
@@ -221,7 +221,8 @@ def my_rebalance(context, data):
                     CostBasis *
                     SellFactor,
                     buy=False))
-            
+
+            log.info("Sell orders holder 2 ")        
             order(stock, -StockShares, style=LimitOrder(SellPrice))            
 
             if np.isnan(SellPrice):
