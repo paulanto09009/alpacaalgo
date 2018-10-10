@@ -3,6 +3,7 @@ from pylivetrader.api import (
     date_rules,
     time_rules,
     order,
+    order_target,
     get_open_orders,
     cancel_order,
     pipeline_output,
@@ -220,7 +221,9 @@ def my_rebalance(context, data):
                     SellFactor,
                     buy=False))            
             print(stock)      
-            print(SellPrice)                    
+            print(SellPrice)  
+            if StockShares == 4:
+                order_target(stock, 0)
             
             
             if np.isnan(SellPrice):
