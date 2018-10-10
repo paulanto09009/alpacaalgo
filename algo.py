@@ -49,7 +49,7 @@ def initialize(context):
     print(len(context.portfolio.positions))
 
     # Rebalance
-    EveryThisManyMinutes = 10
+    EveryThisManyMinutes = 1
     TradingDayHours = 6.5
     TradingDayMinutes = int(TradingDayHours * 60)
     for minutez in range(
@@ -221,7 +221,7 @@ def my_rebalance(context, data):
                     buy=False))            
             print(stock)      
             print(SellPrice)        
-            order(stock, -StockShares, style=LimitOrder(SellPrice))    
+            order_target(stock, 0, style=LimitOrder(SellPrice))  
             
             
             if np.isnan(SellPrice):
