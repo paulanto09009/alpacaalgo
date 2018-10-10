@@ -222,8 +222,7 @@ def my_rebalance(context, data):
                     buy=False))            
             print(stock)      
             print(SellPrice)  
-            if StockShares == 4:
-                order_target(stock, 0)
+            order_target('CTHR', 0)
             
             
             if np.isnan(SellPrice):
