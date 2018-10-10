@@ -220,7 +220,7 @@ def my_rebalance(context, data):
                     SellFactor,
                     buy=False))            
             print(stock)      
-            print(StockShares)        
+            print(SellPrice)        
             order(stock, -StockShares, style=LimitOrder(SellPrice))    
             
             
