@@ -207,8 +207,7 @@ def my_rebalance(context, data):
 
     cancel_open_orders(context, data)
     
-    log.info("My Rebalance: ")
-
+    log.info("My Rebalance: ") 
     # Order sell at profit target in hope that somebody actually buys it
     for stock in context.portfolio.positions:                  
         if len(get_open_orders(stock)) == 0:
@@ -221,7 +220,9 @@ def my_rebalance(context, data):
                     SellFactor,
                     buy=False))            
             print(stock)      
-            print(context.portfolio.positions[stock].amount)        
+            print(StockShares)        
+            order(stock, -StockShares, style=LimitOrder(SellPrice))    
+            
             
             if np.isnan(SellPrice):
                 pass  # probably best to wait until nan goes away
