@@ -226,7 +226,7 @@ def my_rebalance(context, data):
             
             if np.isnan(SellPrice):
                 pass  # probably best to wait until nan goes away
-            elif (stock in context.age and context.age[stock] < 1):
+            elif (stock in context.age and context.age[stock] < 2):
                 pass
             elif (
                 stock in context.age
@@ -236,7 +236,7 @@ def my_rebalance(context, data):
                     or CostBasis > CurrPrice
                 )
             ):
-                if (stock in context.age and context.age[stock] < 1):
+                if (stock in context.age and context.age[stock] < 2):
                     pass
                 elif stock not in context.age:
                     context.age[stock] = 1
