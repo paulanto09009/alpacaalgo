@@ -220,8 +220,7 @@ def my_rebalance(context, data):
                     SellFactor,
                     buy=False))            
             print(stock)      
-            print(SellPrice)        
-            order(stock, -1, style=LimitOrder(SellPrice))  
+            print(SellPrice)                    
             
             
             if np.isnan(SellPrice):
@@ -243,7 +242,7 @@ def my_rebalance(context, data):
                 else:
                     SellPrice = float(
                         make_div_by_05(.95 * CurrPrice, buy=False))
-                    order(stock, -StockShares,
+                    order(stock, 0,
                           style=LimitOrder(SellPrice)
                           )
             else:
@@ -253,7 +252,7 @@ def my_rebalance(context, data):
                     context.age[stock] = 1
                 else:
 
-                    order(stock, -StockShares,
+                    order(stock, 0
                           style=LimitOrder(SellPrice)
                           )
 
