@@ -252,7 +252,7 @@ def my_rebalance(context, data):
                     context.age[stock] = 1
                 else:
 
-                    order(stock, 0
+                    order(stock, 0,
                           style=LimitOrder(SellPrice)
                           )
 
