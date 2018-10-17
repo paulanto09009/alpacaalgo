@@ -239,7 +239,7 @@ def my_rebalance(context, data):
                     or CostBasis > CurrPrice
                 )
             ):
-                if (stock in context.age and context.age[stock] < 2):
+                if (stock in context.age and context.age[stock] < 1):
                     pass
                 elif stock not in context.age:
                     context.age[stock] = 1
