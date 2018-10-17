@@ -198,18 +198,17 @@ def before_trading_start(context, data):
         message = 'stock.symbol: {symbol}  :  age: {age}'
         log.info(message.format(symbol=stock.symbol, age=context.age[stock]))
 
+    place_sells(context, data)        
     pass
 
 
-def my_rebalance(context, data):
-    BuyFactor = .99
+def place_sells(context, data):
     SellFactor = 1.01
     cash = context.portfolio.cash
 
-    cancel_open_orders(context, data)
     open_orders = get_open_orders()
     
-    log.info("My Rebalance: ") 
+    log.info("Place sells") 
     # Order sell at profit target in hope that somebody actually buys it
     for stock in context.portfolio.positions:                  
         if stock in open_orders:
@@ -266,6 +265,15 @@ def my_rebalance(context, data):
                           style=LimitOrder(SellPrice)
                           )
 
+                    
+def my_rebalance(context, data):
+    BuyFactor = .99
+    SellFactor = 1.01
+    cash = context.portfolio.cash
+
+    cancel_open_buy_orders(context, data)
+    
+    log.info("My Rebalance: ") 
     WeightThisBuyOrder = float(1.00 / context.MaxBuyOrdersAtOnce)
     
     
