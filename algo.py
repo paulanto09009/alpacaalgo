@@ -50,7 +50,7 @@ def initialize(context):
     print(len(context.portfolio.positions))
 
     # Rebalance
-    EveryThisManyMinutes = 10
+    EveryThisManyMinutes = 1
     TradingDayHours = 6.5
     TradingDayMinutes = int(TradingDayHours * 60)
     for minutez in range(
@@ -240,10 +240,13 @@ def my_rebalance(context, data):
                 )
             ):
                 if (stock in context.age and context.age[stock] < 1):
+                    print("age < 1")
                     pass
                 elif stock not in context.age:
+                    print("age = 1")                                        
                     context.age[stock] = 1
                 else:
+                    print("sell loss")
                     SellPrice = float(
                         make_div_by_05(.95 * CurrPrice, buy=False))
                     order(stock, -StockShares,
@@ -251,11 +254,13 @@ def my_rebalance(context, data):
                           )
             else:
                 if (stock in context.age and context.age[stock] < 1):
+                    print("age < 1")
                     pass
                 elif stock not in context.age:
+                    print("age = 0")
                     context.age[stock] = 1
                 else:
-
+                    print("sell win")
                     order(stock, -StockShares,
                           style=LimitOrder(SellPrice)
                           )
