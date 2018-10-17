@@ -35,7 +35,6 @@ def record(*args, **kwargs):
 
 
 def initialize(context):
-
     context.MaxCandidates = 100
     context.MaxBuyOrdersAtOnce = 5
     context.MyLeastPrice = .10
@@ -82,7 +81,6 @@ def initialize(context):
     my_pipe = make_pipeline(context)
     attach_pipeline(my_pipe, 'my_pipeline')
     
-    place_sells(context, data)
 
 
 def make_pipeline(context):
@@ -270,8 +268,8 @@ def my_rebalance(context, data):
     BuyFactor = .99
     SellFactor = 1.01
     cash = context.portfolio.cash
-
     cancel_open_buy_orders(context, data)
+    place_sells(context,data)
     
     log.info("My Rebalance: ") 
     WeightThisBuyOrder = float(1.00 / context.MaxBuyOrdersAtOnce)
