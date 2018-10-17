@@ -81,6 +81,8 @@ def initialize(context):
     # Create our pipeline and attach it to our algorithm.
     my_pipe = make_pipeline(context)
     attach_pipeline(my_pipe, 'my_pipeline')
+    
+    place_sells(context, data)
 
 
 def make_pipeline(context):
@@ -196,9 +198,7 @@ def before_trading_start(context, data):
         if stock not in context.portfolio.positions:
             context.age[stock] = 0
         message = 'stock.symbol: {symbol}  :  age: {age}'
-        log.info(message.format(symbol=stock.symbol, age=context.age[stock]))
-
-    place_sells(context, data)        
+        log.info(message.format(symbol=stock.symbol, age=context.age[stock]))      
     pass
 
 
