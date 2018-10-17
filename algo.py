@@ -207,11 +207,14 @@ def my_rebalance(context, data):
     cash = context.portfolio.cash
 
     cancel_open_orders(context, data)
+    open_orders = get_open_orders()
     
     log.info("My Rebalance: ") 
     # Order sell at profit target in hope that somebody actually buys it
     for stock in context.portfolio.positions:                  
-        if len(get_open_orders(stock)) == 0:
+        if stock in open_orders:
+            pass
+        else:
             StockShares = context.portfolio.positions[stock].amount
             CurrPrice = float(data.current([stock], 'price'))
             CostBasis = float(context.portfolio.positions[stock].cost_basis)
