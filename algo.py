@@ -213,7 +213,7 @@ def place_sells(context, data):
                 if 0 > o.amount:  # it is a sell order
                     place_sell_orders = false
 
-    if place_sell_orders
+    if place_sell_orders == true
         log.info("Place sells") 
         # Order sell at profit target in hope that somebody actually buys it
         for stock in context.portfolio.positions:                  
