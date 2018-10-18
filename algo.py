@@ -204,70 +204,72 @@ def place_sells(context, data):
     SellFactor = 1.01
     cash = context.portfolio.cash
     open_orders = get_open_orders()    
+    place_sell_orders = true
     
     # exit if we have open sell orders
     if len(open_orders) != 0:
         for stock, orders in oo.items():
             for o in orders:
                 if 0 > o.amount:  # it is a sell order
-                    pass
-    
-    log.info("Place sells") 
-    # Order sell at profit target in hope that somebody actually buys it
-    for stock in context.portfolio.positions:                  
-        if stock in open_orders:
-            pass
-        else:
-            StockShares = context.portfolio.positions[stock].amount
-            CurrPrice = float(data.current([stock], 'price'))
-            CostBasis = float(context.portfolio.positions[stock].cost_basis)
-            SellPrice = float(
-                make_div_by_05(
-                    CostBasis *
-                    SellFactor,
-                    buy=False))            
-            print(stock)      
-            print(StockShares)  
-            
-            
-            if np.isnan(SellPrice):
-                pass  # probably best to wait until nan goes away
-            elif (stock in context.age and context.age[stock] < 1):
-                print("age < 1.0")
+                    place_sell_orders = false
+
+    if place_sell_orders
+        log.info("Place sells") 
+        # Order sell at profit target in hope that somebody actually buys it
+        for stock in context.portfolio.positions:                  
+            if stock in open_orders:
                 pass
-            elif (
-                stock in context.age
-                and context.MyFireSaleAge <= context.age[stock]
-                and (
-                    context.MyFireSalePrice > CurrPrice
-                    or CostBasis > CurrPrice
-                )
-            ):
-                if (stock in context.age and context.age[stock] < 1):
-                    print("age < 1.1")
-                    pass
-                elif stock not in context.age:
-                    print("age = 1")                                        
-                    context.age[stock] = 1
-                else:
-                    print("sell loss")
-                    SellPrice = float(
-                        make_div_by_05(.95 * CurrPrice, buy=False))
-                    order(stock, -StockShares,
-                          style=LimitOrder(SellPrice)
-                          )
             else:
-                if (stock in context.age and context.age[stock] < 1):
-                    print("age < 1")
+                StockShares = context.portfolio.positions[stock].amount
+                CurrPrice = float(data.current([stock], 'price'))
+                CostBasis = float(context.portfolio.positions[stock].cost_basis)
+                SellPrice = float(
+                    make_div_by_05(
+                        CostBasis *
+                        SellFactor,
+                        buy=False))            
+                print(stock)      
+                print(StockShares)  
+
+
+                if np.isnan(SellPrice):
+                    pass  # probably best to wait until nan goes away
+                elif (stock in context.age and context.age[stock] < 1):
+                    print("age < 1.0")
                     pass
-                elif stock not in context.age:
-                    print("age = 0")
-                    context.age[stock] = 1
+                elif (
+                    stock in context.age
+                    and context.MyFireSaleAge <= context.age[stock]
+                    and (
+                        context.MyFireSalePrice > CurrPrice
+                        or CostBasis > CurrPrice
+                    )
+                ):
+                    if (stock in context.age and context.age[stock] < 1):
+                        print("age < 1.1")
+                        pass
+                    elif stock not in context.age:
+                        print("age = 1")                                        
+                        context.age[stock] = 1
+                    else:
+                        print("sell loss")
+                        SellPrice = float(
+                            make_div_by_05(.95 * CurrPrice, buy=False))
+                        order(stock, -StockShares,
+                              style=LimitOrder(SellPrice)
+                              )
                 else:
-                    print("sell win")
-                    order(stock, -StockShares,
-                          style=LimitOrder(SellPrice)
-                          )
+                    if (stock in context.age and context.age[stock] < 1):
+                        print("age < 1")
+                        pass
+                    elif stock not in context.age:
+                        print("age = 0")
+                        context.age[stock] = 1
+                    else:
+                        print("sell win")
+                        order(stock, -StockShares,
+                              style=LimitOrder(SellPrice)
+                              )
 
                     
 def my_rebalance(context, data):
