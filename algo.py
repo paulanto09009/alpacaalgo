@@ -277,7 +277,6 @@ def my_rebalance(context, data):
     SellFactor = 1.01
     cash = context.portfolio.cash
     cancel_open_buy_orders(context, data)
-    place_sells(context,data)
     
     log.info("My Rebalance: ") 
     WeightThisBuyOrder = float(1.00 / context.MaxBuyOrdersAtOnce)
@@ -302,10 +301,11 @@ def my_rebalance(context, data):
             order(stock, StockShares,
                   style=LimitOrder(BuyPrice)
                   )
+    
+    place_sells(context,data)   
 
+    
 # if cents not divisible by .05, round down if buy, round up if sell
-
-
 def make_div_by_05(s, buy=False):
     s *= 20.00
     s = math.floor(s) if buy else math.ceil(s)
