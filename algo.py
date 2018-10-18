@@ -204,16 +204,16 @@ def place_sells(context, data):
     SellFactor = 1.01
     cash = context.portfolio.cash
     open_orders = get_open_orders()    
-    place_sell_orders = true
+    place_sell_orders = 1
     
     # exit if we have open sell orders
     if len(open_orders) != 0:
         for stock, orders in oo.items():
             for o in orders:
                 if 0 > o.amount:  # it is a sell order
-                    place_sell_orders = false
+                    place_sell_orders = 0
 
-    if place_sell_orders == true
+    if place_sell_orders == 1
         log.info("Place sells") 
         # Order sell at profit target in hope that somebody actually buys it
         for stock in context.portfolio.positions:                  
