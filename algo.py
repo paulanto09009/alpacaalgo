@@ -208,7 +208,7 @@ def place_sells(context, data):
     
     # exit if we have open sell orders
     if len(open_orders) != 0:
-        for stock, orders in oo.items():
+        for stock, orders in open_orders.items():
             for o in orders:
                 if 0 > o.amount:  # it is a sell order
                     place_sell_orders = 0
