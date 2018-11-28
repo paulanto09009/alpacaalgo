@@ -201,7 +201,7 @@ def before_trading_start(context, data):
 
 
 def place_sells(context, data):
-    SellFactor = 1.01
+    SellFactor = 1.1
     cash = context.portfolio.cash
     open_orders = get_open_orders()    
     place_sell_orders = 1
@@ -274,7 +274,7 @@ def place_sells(context, data):
                     
 def my_rebalance(context, data):
     BuyFactor = .99
-    SellFactor = 1.01
+    SellFactor = 1.1
     cash = context.portfolio.cash
     cancel_open_buy_orders(context, data)
     
